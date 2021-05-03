@@ -1,94 +1,33 @@
-# Sequelize install and connect
+# PAGINACIÓN WEB FULLSTACKJS 
 
-## 1) Instalamos sequelize vía npm con el siguiente comando
+Una tienda online muestra un listado artículos divididos en 10 por página, con dos controles anterior y siguiente. Cada artículo tiene los siguientes campos: nombre, relevancia y precio. 
 
-    ```
-        npm install --save sequelize
-    ```
+Los artículos son mostrados en forma de tabla (mediante filas y columnas), de manera que en la cabecera de cada campo hay un control para ordenar por dicho campo, tanto ascendente como descendentemente (alternativamente cada vez que se pulsa en dicho control), siempre mostrando los datos ordenados de 10 en 10. 
 
-## 2) Instalamos mysql con el siguiente comando
+Los fabricantes tienen un nombre, un CIF y una dirección. Al pinchar en un artículo del listado, se mostrarán los datos del mismo, así como los de su fabricante. 
 
-    ```
-        npm install --save mysql2
-    ```
+Por otro lado, la información de los artículos así como de los fabricantes de los mismos, deberá ser guardada en una base de datos. 
 
-## 3) Si usas otro muchach@, pues...
+Además, habrá un buscador que permitirá buscar por el nombre del artículo y/o del fabricante. 
 
-    ```
-        npm install --save pg pg-hstore # Postgres
-        npm install --save mariadb
-        npm install --save sqlite3
-        npm install --save tedious # Microsoft SQL Server
-    ```
+Se pide: 
 
-## 4) Requerimos ambos en el archivo que queramos. Yo tengo uno propio que he llamado server.
+1. Implementar el código frontend y backend de la aplicación descrita. 2. Diseñar y crear la base de datos, y exportarla a los ficheros correspondientes. 3. Subir el proyecto completo a GitHub: código y base de datos. 
 
-    ```
-        const { Sequelize } = require('sequelize');
-    ```
+**Notas adicionales**
 
-## 5) Creamos la config de la base de datos. 
-- El primer argumento 'sequelize', es el nombre de la base de datos a la que queráis conectaos
-- El segundo, el nombre de usuario, en mi caso root.
-- El tercero, la contraseña, en mi caso igual que el nombre, root.
-- Como último parámetro, pasamos el objeto que definirá el host, en este caso localhost, y qué usamos para conectarnos, en mi caso, mysql
-(postgress, mariadb etc... en otros casos)
+Para el frontend, debe hacerse con React funcional (NO de clases).
 
-    ```
-        const db = new Sequelize('sequelize', 'root', 'root', {
-        host: 'localhost',
-        dialect: 'mysql'
+Para el backend, debe hacerse con Node.js y Express.
 
-        });
-    ```
+Para la base de datos, se elegirá entre MySQL o MongoDB, justificando la decisión posteriormente en la defensa del proyecto.
 
-Y exportamos el módulo para importarlo en nuestro archivo principal. En mi caso, app.js
+Se valorará el uso de algún ORM u ODM adicional como Sequelize o Mongoose.
 
-## 6) En app.js, con el archivo server importado (la config de que tendrá la conexión) Realizamos la conexión en sí.
+Se permite el uso de paquetes npm y recursos de terceros, en toda la aplicación.
 
-    ```
-        const db = require('./server');
+Se valorará especialmente la realización de pruebas unitarias mediante el uso de React Testing Library, Jest, Enzyme o cualquier otra librería que se desee.
 
-
-        const dbTest = async () => {
-
-            try{
-                await db.authenticate();
-                console.log('database connected');
-
-            }catch(error) {
-                throw new Error(error);
-            };
-
-        };
-        dbTest();
-    ```
-
-## 7) Por último, creamos una carpeta para los módelos, igual que en mongoose. Ahí le decímos cómo va a lucir los campos de los elementos de nuestras tablas. En el ejemplo que tengo yo, la tabla de usuarios tendrá lo siguiente:
-
-    ```
-        const User = db.define('User', {
-        
-            firstName: {
-                type: DataTypes.STRING
-            },
-            email: {
-                type: DataTypes.STRING
-            },
-            state: {
-                type: DataTypes.BOOLEAN
-            },
-        });
-    ```
-### Donde aquí tendremos tres campos, uno para el nombre, otro para el email y otro que sería un booleano. No sé si es muy práctico pero sólo era para el ejemplo.
-
-> Respecto a las querys, en la documentación oficial vienen unas cuantas, pero igual con todo lo que tenemos encima, le echaré un vistazo estos días y actualizo el repo si eso. Igualmente os paso esto así para que al menos tengáis cómo conectar mysql con sequelize.
-Un saludete cariños míos.
-
-
-
-
-
-    
+Se prestará especial atención a un código limpio, legible, bien documentado, correctamente versionado y fácil de mantener, así como a la aplicación sobre el mismo de los principios SOLID. 
 
 

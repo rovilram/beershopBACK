@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
-
-const db = require('./server');
+const db = require('./data/databaseServer');
 const { Op } = require('sequelize');
+const Product = require('./models/Product');
 
-const { User } = require('./models/User');
+require('dotenv').config();
 
 const dbTest = async () => {
   try {
@@ -39,16 +39,14 @@ const insertUser = async (firstName, email, state) => {
   }
 };
 
-const selectUsers = async (firstName, email, state) => {
+const selectProduct = async (name) => {
   try {
-    const users = await User.findAll({
+    const products = await Product.findAll({
       where: {
-        firstname: { [Op.substring]: firstName },
-        email: { [Op.substring]: email },
-        state,
+        CategoryId: 1,
       },
     });
-    console.log('Búsqueda de usuarios', JSON.stringify(users, null, 2));
+    console.log('Búsqueda de productos', JSON.stringify(products, null, 2));
   } catch (error) {
     console.log('Error en el select de la tabla Users', error);
   }
@@ -56,9 +54,9 @@ const selectUsers = async (firstName, email, state) => {
 
 //createTables();
 //insertUser('Roberto', 'roberto@to.es', true);
-selectUsers('iro', 'ro', true);
+selectProduct('arr');
 
-const port = 3001;
+const port = 5000;
 app.listen(port, () => {
   console.log(`Server running at port ${port}`);
 });
