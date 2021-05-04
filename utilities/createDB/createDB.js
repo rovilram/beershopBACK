@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize');
-const Company = require('../../models/Company');
-const Category = require('../../models/Category');
-const Product = require('../../models/Product');
+const Company = require('../../database/models/Company');
+const Category = require('../../database/models/Category');
+const Product = require('../../database/models/Product');
 
 require('dotenv').config();
 

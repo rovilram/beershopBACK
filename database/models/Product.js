@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
-const db = require('../data/databaseServer');
-const  Category  = require('./Category');
-const  Company  = require('./Company');
+const db = require('../db');
+const Category = require('./Category');
+const Company = require('./Company');
 
 Product = db.define('Product', {
   id: {
@@ -12,6 +12,7 @@ Product = db.define('Product', {
   name: {
     type: DataTypes.STRING,
   },
+  photo: DataTypes.STRING,
   style: {
     type: DataTypes.STRING,
   },
@@ -19,10 +20,10 @@ Product = db.define('Product', {
   valoration: DataTypes.INTEGER,
 });
 
-Category.hasMany(Product);
+Category.hasMany(Product, { foreignKey: 'CategoryId' });
 Product.belongsTo(Category);
 
 Company.hasMany(Product);
-Product.belongsTo(Company);
+Product.belongsTo(Company, { foreignKey: 'CompanyId' });
 
 module.exports = Product;
