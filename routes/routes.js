@@ -5,7 +5,6 @@ const controllers = require('../controllers/controllers')
 // MAIN VIEW ENDPOINT
 router.get('/products/:category', (req, res) => {
   const { category } = req.params;
-
   controllers
     .selectProducts(category)
     .then((response) => {

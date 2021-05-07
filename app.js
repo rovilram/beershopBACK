@@ -11,8 +11,13 @@ const DB_HOST = process.env.DB_HOST;
 
 const PORT = process.env.PORT || 5000;
 
+const cors = require('cors');
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use(cors());
+
 
 // ENDPOINTS
 app.get('/', function (req, res) {

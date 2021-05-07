@@ -7,7 +7,7 @@ exports.selectProducts = async (category) => {
       attributes: ['id', 'name', 'style', 'price', 'valoration'],
       include: {
         model: Company,
-        attributes: ['name', 'CIF', 'address'],
+        attributes: ['name'],
         required: true,
       },
       raw: true,
@@ -20,7 +20,7 @@ exports.selectProducts = async (category) => {
 
 exports.selectProductCompany = async (id) => {
   try {
-    const product = await Product.findAll({
+    const product = await Product.findOne({
       attributes: ['name', 'style', 'photo', 'price', 'valoration'],
       where: {
         id,
@@ -31,6 +31,7 @@ exports.selectProductCompany = async (id) => {
         required: true,
       },
     });
+    if (product === null) throw ("No encontrado producto")
     return product;
   } catch (error) {
     console.log(error);

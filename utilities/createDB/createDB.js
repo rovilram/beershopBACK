@@ -5,12 +5,10 @@ const Product = require('../../database/models/Product');
 
 require('dotenv').config();
 
-
-const DB_HOST = process.env.DB_HOST;
-const DB_PASS = process.env.DB_PASS;
-const DB_USER = process.env.DB_USER;
-const DB_DB = process.env.DB_DB;
-
+const DB_DB = process.env.DB_DB || 'beerShop';
+const DB_USER = process.env.DB_USER || 'root';
+const DB_PASS = process.env.DB_PASS || '';
+const DB_HOST = process.env.DB_HOST || 'localhost';
 
 const beersData = [
   {
@@ -224,39 +222,46 @@ const beersData = [
 
 const companyData = [
   {
+    id: 1,
     name: 'Laugar',
     CIF: 'B95713780',
     address:
       'Barrio Zubiete (pol Industrial Isasi), 42 Gordexola 48192 Bizkaia',
   },
   {
+    id: 2,
     name: 'Sagra',
     CIF: 'B45846862',
     address:
       'Avenida de la Industria (pol. ind. Villa de Azaña), NAV 155 Numancia de la Sagra 45230  Toledo',
   },
   {
+    id: 3,
     name: 'Menduiña',
     CIF: 'B36587731',
     address: 'Carretera Aldan (darbo), 16 Cangas 36940  Pontevedra',
   },
   {
+    id: 4,
     name: 'Quana',
     CIF: 'B65685406',
     address: 'Calle via Augusta, 82 - PISO 1 Barcelona 08006  Barcelona',
   },
   {
+    id: 5,
     name: 'CASCALLARES',
     CIF: 'B87331641',
     address: 'AVENIDA DAS PONTES, S/N 27833 XERMADE Lugo',
   },
   {
+    id: 6,
     name: 'ARRIACA',
     CIF: 'B19297688',
     address:
       'Avda De La Industria 3 A - Nave 6  19210  - (Yunquera Dehenares) – Guadalajara',
   },
   {
+    id: 7,
     name: 'CERVEZAS CUENCA',
     CIF: 'A16300279',
     address: 'CALLE ARCAS (POL. INDUSTRIAL SEPES), PAR 40 16004 CUENCA',
@@ -289,7 +294,10 @@ const createDB = async (database) => {
 const insertCategory = async (name) => {
   try {
     const response = await Category.create({ name });
-    console.log('Datos de "Category" insertados correctamente', response.toJSON().id);
+    console.log(
+      'Datos de "Category" insertados correctamente',
+      response.toJSON().id,
+    );
   } catch (error) {
     console.log('Error al insertar datos', error);
   }
@@ -298,7 +306,10 @@ const insertCategory = async (name) => {
 const insertProduct = async (beer) => {
   try {
     const response = await Product.create(beer);
-    console.log('Datos de "Product" insertados correctamente', response.toJSON().id);
+    console.log(
+      'Datos de "Product" insertados correctamente',
+      response.toJSON().id,
+    );
   } catch (error) {
     console.log('Error al insertar datos', error);
   }
@@ -307,7 +318,10 @@ const insertProduct = async (beer) => {
 const insertCompany = async (company) => {
   try {
     const response = await Company.create(company);
-    console.log('Datos de "Company" insertados correctamente', response.toJSON().id);
+    console.log(
+      'Datos de "Company" insertados correctamente',
+      response.toJSON().id,
+    );
   } catch (error) {
     console.log('Error al insertar datos', error);
   }
